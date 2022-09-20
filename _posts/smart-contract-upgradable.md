@@ -10,15 +10,15 @@ ogImage:
   url: '/assets/blog/smart-contract-upgradable/openzeppelin_truffle.png'
 ---
 
-## Wanna Update your smart contract ?
+## How to Update your smart contract ?
 
-At Fractif, In order to build an awesome asset tokenization app, we were interested in how to update our smart contracts on the [Ethereum Blockchain](https://ethereum.org/).
+At Fractif, in order to build an DAPP, we were interested in how to update our smart contracts on the [Ethereum Blockchain](https://ethereum.org/).
 
-[Smart contracts](https://www.ibm.com/topics/smart-contracts) are immutable, verifiable, and autonomous pieces of code that are stored on a blockchain that are automatically executed when predetermined terms and conditions are met. Due to the immutability nature of blockchain, no change is possible on a deployed smart contract or a verified transaction. Due to the immutability nature of blockchain, no change is possible on a deployed smart contract or a verified transaction.
+[Smart contracts](https://www.ibm.com/topics/smart-contracts) are immutable, verifiable, and autonomous pieces of code that are stored on a blockchain which automatically executed when predetermined terms and conditions are met. Due to the immutability nature of blockchain, no change is possible on a deployed smart contract or a verified transaction.
 
-Due to the immutability nature of blockchain, no change is possible on a deployed smart contract or a verified transaction. Unfortunately your smart contract might need a patch, a fix, or new features.
+Unfortunately your smart contract might need a patch, a fix, or new features.
 
-But thanks with Openzeppelin you will be able to upgrade your smart contract with an ingenious process.
+But thanks with Openzeppelin you will be able to upgrade your smart contract with an smooth process.
 
 ----------------------
 ## How does it works ?
@@ -26,11 +26,12 @@ But thanks with Openzeppelin you will be able to upgrade your smart contract wit
 ### The proxy pattern
 
 
-Thins ingenious process is simple to understand the proxy upgrade pattern. The proxy upgrade pattern involves deploying a proxy contract that delegates function calls to your logic and storage contracts. 
+This ingenious process makes it easy to create an upgrade pattern.
+The proxy upgrade pattern involves deploying a proxy contract that delegates function calls to your logic and storage contracts. 
 
 The proxy will store adresses of the logic contracts and this adress can be changed allowing us to deploy a new version of our contract and point the proxy to that new version.
 
-Warning - However, there are many things to be careful of when using this process. Especially to make sure that our old contracts are not used for bad purposes.
+Warning - However, there are many things to be careful of when using this process. Especially we want to make sure that our old contracts are not used for bad purposes.
 
 More information on proxy patterns, take a look on [OpenZeppelin’s proxy pattern guide](https://docs.openzeppelin.com/upgrades-plugins/1.x/truffle-upgrades).
 
@@ -40,13 +41,13 @@ Illustration from [Ethereum StackExchange](https://ethereum.stackexchange.com/)
 ----------------------
 ## Environement setup
 
-A future post will explain you how to setup your solidity environment. This post will show you which environnement between [Truffle](https://trufflesuite.com/) and [Hardhat](https://hardhat.org/) you need to use for your needs.
+A future post will explain you how to setup your Solidity environment. This post will show you which environnement between [Truffle](https://trufflesuite.com/) and [Hardhat](https://hardhat.org/) you need to use for your needs.
 
-Subscribe to the newsletter to get informed once the post will be available !
+Subscribe to the newsletter to get informed once the post will be available!
 
 But let's use Truffle for this example.
 
-Creating a new npm project:
+Create a new npm project:
 ```shell
 mkdir smartcontract-upgradable
 
@@ -75,7 +76,7 @@ npm i --save-dev chai
 
 Let's take the example of the [Openzeppelin](https://docs.openzeppelin.com/) documentation.
 
-Let's init a simple smart contract.
+First of all init a simple smart contract.
 
 **Car.sol**
 
@@ -104,7 +105,7 @@ contract Car {
 ----------------------
 ## Testing localy our smart contract
 
-We will create unit tests for our contract. 
+Then create unit tests for our contract. 
 Create Car.test.js in your test directory.
 
 **Car.test.js**
@@ -162,7 +163,7 @@ contract("Car (proxy)", function () {
 });
 ```
 
-Let's run our tests !
+Then run our tests!
 
 ``` shell
 $ npx truffle test
@@ -177,13 +178,13 @@ $ npx truffle test
   2 passing (169ms)
 ```
 ----------------------
-## Deploy the contract to a public network
+## Deploy the contract 
 
-To deploy our Car contract we will use Truffle migrations. 
+To deploy our Car contract we will use [Truffle migrations](https://trufflesuite.com/docs/truffle/getting-started/running-migrations/). 
 
 [The Truffle Upgrades](https://docs.openzeppelin.com/upgrades-plugins/1.x/truffle-upgrades) plugin provides a deployProxy function to deploy our upgradeable contract. 
 
-It will deploy our contract, a ProxyAdmin to be the admin for our projects proxies and the proxy.
+When we will deploy our contract, the script will deploy a [ProxyAdmin](https://docs.openzeppelin.com/contracts/3.x/api/proxy#ProxyAdmin) and the [proxy](https://docs.openzeppelin.com/contracts/3.x/api/proxy) that will allow us to use new version of our contract.
 
 Create the following 2_deploy_car.js script in the migrations directory.
 
@@ -202,16 +203,16 @@ module.exports = async function (deployer) {
 };
 ```
 You can now first deploy the contract to a local test to check if everything is working. 
-A new post will come soon to explain you how to deploy and test your contract in local through [ganash](https://trufflesuite.com/ganache/).
+A new post will come soon to explain you how to deploy and test your contract in local through [Ganache](https://trufflesuite.com/ganache/).
 
-But for the moment we will deploy it to a testnet network.
+But for the moment we will deploy it to a testnet network directly.
 
-You can test on any testnet ([Ropsten](https://ropsten.etherscan.io/), [Kovan](https://kovan.etherscan.io/), [Rinkeby](https://rinkeby.etherscan.io/))
+You can deploy it on any testnet ([Ropsten](https://ropsten.etherscan.io/), [Kovan](https://kovan.etherscan.io/), [Rinkeby](https://rinkeby.etherscan.io/))
 
 But in this post we are going to use Goerli. 
-A new post about setuping our project using a testnet will come soon.
+A new post about setting our project using a testnet will come soon.
 
-Now that your project is setup on a testnet you can now run truffle migrate on goerli (or whatever network). Once the migration is done we can now see our contract (Car.sol), a **ProxyAdmin** and the **proxy** being deployed.
+Now that your project is setup on a testnet, you can now run truffle migrate on Goerli (or your preferred network). Once the migration is done we can now see our contract (Car.sol), a **ProxyAdmin** and the **proxy** being deployed.
 
 ```shell
 $ npx truffle migrate --network goerli
@@ -278,9 +279,9 @@ $ npx truffle migrate --network goerli
    -------------------------------
 ```
 
-## Update a contract on a public network
+## Update a contract
 
-Now that we have created and deployed an upgradable smart contract how can we update our contract ?
+Now that we have created and deployed an upgradable smart contract, how can we update our contract?
 
 Let's write our new smart contract version:
 
